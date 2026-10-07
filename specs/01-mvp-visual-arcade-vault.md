@@ -1,6 +1,6 @@
 # SPEC 01 — MVP visual de Arcade Vault
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** —
 > **Date:** 2026-10-07
 > **Objective:** Portar a Next.js las 5 pantallas de `references/templates/` (biblioteca, detalle, reproductor, auth y salón de la fama) como un MVP solo visual, con datos mock y sin ningún juego real.
@@ -110,24 +110,24 @@ Cada paso deja la app ejecutable y es commiteable por separado.
 
 ## Criterios de aceptación
 
-- [ ] `npm run lint` y `npm run build` terminan sin errores.
-- [ ] Al abrir `/` se ve la biblioteca con 8 tarjetas, el hero "ARCADE VAULT" y el footer.
-- [ ] Escribir "gl" en el buscador deja solo la tarjeta GLOTÓN; un texto sin coincidencias muestra "NO HAY RESULTADOS".
-- [ ] El chip SHOOTER muestra exactamente INVASORES y ROCAS; TODOS vuelve a mostrar las 8.
-- [ ] Clic en una tarjeta o en su botón JUGAR abre el detalle del juego correcto y el hash cambia a `#%7B%22name%22...`.
-- [ ] Recargar la página con un hash de detalle abre ese mismo detalle.
-- [ ] El detalle muestra 10 filas de leaderboard con las 3 primeras destacadas; "VOLVER AL VAULT" regresa a la biblioteca.
-- [ ] "JUGAR AHORA" abre el reproductor; la puntuación sube sola cada ~220 ms.
-- [ ] PAUSA detiene la puntuación y muestra "EN PAUSA"; REANUDAR la reanuda.
-- [ ] FIN abre el modal con la puntuación final; "GUARDAR PUNTUACIÓN" agrega una entrada a `localStorage["av_scores"]` y muestra "PUNTUACIÓN GUARDADA\_".
-- [ ] "JUGAR DE NUEVO" reinicia puntuación, vidas y nivel; SALIR vuelve al detalle del mismo juego.
-- [ ] Iniciar sesión con usuario "kai" guarda `av_user = {"name":"KAI"}`, el `Nav` muestra "KAI ▾" y la app va a la biblioteca.
-- [ ] "JUGAR COMO INVITADO" va a la biblioteca sin usuario y el `Nav` muestra "Iniciar Sesión".
-- [ ] Clic en el botón de usuario del `Nav` cierra sesión y borra `av_user`.
-- [ ] El Salón muestra podio, tabla de 12 filas y tabs de los 8 juegos; con usuario logueado aparece la fila "TU MEJOR MARCA EN <JUEGO>", sin usuario no.
-- [ ] En ancho ≤ el breakpoint móvil de `globals.css` aparece el botón ≡ y el panel lateral navega a las pantallas.
-- [ ] La consola del navegador no muestra errores de hydration ni warnings de React.
-- [ ] No quedan referencias a `Image`/`next.svg` ni al contenido del scaffold en `app/page.tsx`.
+- [x] `npm run lint` y `npm run build` terminan sin errores.
+- [x] Al abrir `/` se ve la biblioteca con 8 tarjetas, el hero "ARCADE VAULT" y el footer.
+- [x] Escribir "gl" en el buscador deja solo la tarjeta GLOTÓN; un texto sin coincidencias muestra "NO HAY RESULTADOS".
+- [x] El chip SHOOTER muestra exactamente INVASORES y ROCAS; TODOS vuelve a mostrar las 8.
+- [x] Clic en una tarjeta o en su botón JUGAR abre el detalle del juego correcto y el hash cambia a `#%7B%22name%22...`.
+- [x] Recargar la página con un hash de detalle abre ese mismo detalle.
+- [x] El detalle muestra 10 filas de leaderboard con las 3 primeras destacadas; "VOLVER AL VAULT" regresa a la biblioteca.
+- [x] "JUGAR AHORA" abre el reproductor; la puntuación sube sola cada ~220 ms.
+- [x] PAUSA detiene la puntuación y muestra "EN PAUSA"; REANUDAR la reanuda.
+- [x] FIN abre el modal con la puntuación final; "GUARDAR PUNTUACIÓN" agrega una entrada a `localStorage["av_scores"]` y muestra "PUNTUACIÓN GUARDADA\_".
+- [x] "JUGAR DE NUEVO" reinicia puntuación, vidas y nivel; SALIR vuelve al detalle del mismo juego.
+- [x] Iniciar sesión con usuario "kai" guarda `av_user = {"name":"KAI"}`, el `Nav` muestra "KAI ▾" y la app va a la biblioteca.
+- [x] "JUGAR COMO INVITADO" va a la biblioteca sin usuario y el `Nav` muestra "Iniciar Sesión".
+- [x] Clic en el botón de usuario del `Nav` cierra sesión y borra `av_user`.
+- [x] El Salón muestra podio, tabla de 12 filas y tabs de los 8 juegos; con usuario logueado aparece la fila "TU MEJOR MARCA EN <JUEGO>", sin usuario no.
+- [x] En ancho ≤ el breakpoint móvil de `globals.css` aparece el botón ≡ y el panel lateral navega a las pantallas.
+- [x] La consola del navegador no muestra errores de hydration ni warnings de React.
+- [x] No quedan referencias a `Image`/`next.svg` ni al contenido del scaffold en `app/page.tsx`.
 
 ## Decisiones
 
