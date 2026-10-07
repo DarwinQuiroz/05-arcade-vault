@@ -6,6 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Arcade Vault: an online platform for playing games and competing for the highest scores. The README (in Spanish) states the project follows Spec Driven Design (`/spec` and `/spec-impl`), using skills from `Klerith/fernando-skills` (`npx skills@latest add Klerith/fernando-skills`). Currently a fresh Create Next App scaffold; no game or scoring code exists yet.
 
+## Skills
+
+- `/frontend-design`: Use this skill to design the frontend (UI/UX) of the application. This includes creating mockups, prototypes, and design specifications.
+
 ## Commands
 
 - `npm run dev` — dev server (Turbopack)
