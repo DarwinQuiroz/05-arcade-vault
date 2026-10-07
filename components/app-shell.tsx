@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { Route, SavedScore, User } from "@/lib/types";
+import Nav from "@/components/nav";
 
 const BIBLIOTECA: Route = { name: "biblioteca" };
 
@@ -88,18 +89,20 @@ export default function AppShell() {
   };
 
   // Las pantallas se conectan en los pasos 5-10; los handlers se usarán entonces.
-  void navigate;
   void onLogin;
-  void onSignOut;
   void onSaveScore;
 
-  void user;
-
-  // Pasos 5-10 sustituyen este placeholder por Nav y las 5 pantallas.
+  // Pasos 6-10 sustituyen este placeholder por las 5 pantallas.
   const screen: React.ReactNode = route.name;
 
   return (
     <>
+      <Nav
+        route={route}
+        navigate={navigate}
+        user={user}
+        onSignOut={onSignOut}
+      />
       <main className="av-main">{screen}</main>
       <footer
         style={{
