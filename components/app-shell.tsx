@@ -7,6 +7,7 @@ import Library from "@/components/library";
 import GameDetail from "@/components/game-detail";
 import Auth from "@/components/auth";
 import GamePlayer from "@/components/game-player";
+import HallOfFame from "@/components/hall-of-fame";
 
 const BIBLIOTECA: Route = { name: "biblioteca" };
 
@@ -94,9 +95,7 @@ export default function AppShell() {
     } catch {}
   };
 
-  // Las pantallas se conectan en los pasos 5-10; los handlers se usarán entonces.
-  // El paso 10 sustituye el placeholder por el Salón de la Fama.
-  let screen: React.ReactNode = route.name;
+  let screen: React.ReactNode = null;
   if (route.name === "biblioteca") screen = <Library navigate={navigate} />;
   else if (route.name === "detalle")
     screen = <GameDetail id={route.id} navigate={navigate} />;
@@ -111,6 +110,8 @@ export default function AppShell() {
     );
   else if (route.name === "auth")
     screen = <Auth navigate={navigate} onLogin={onLogin} />;
+  else if (route.name === "salon")
+    screen = <HallOfFame user={user} navigate={navigate} />;
 
   return (
     <>
