@@ -5,6 +5,7 @@ import type { Route, SavedScore, User } from "@/lib/types";
 import Nav from "@/components/nav";
 import Library from "@/components/library";
 import GameDetail from "@/components/game-detail";
+import Auth from "@/components/auth";
 
 const BIBLIOTECA: Route = { name: "biblioteca" };
 
@@ -66,10 +67,12 @@ export default function AppShell() {
 
   const navigate = (r: Route) => setRoute(r);
 
-  const onLogin = (u: User) => {
+  // `null` = invitado: sin usuario y sin `av_user`.
+  const onLogin = (u: User | null) => {
     setUser(u);
     try {
-      localStorage.setItem("av_user", JSON.stringify(u));
+      if (u) localStorage.setItem("av_user", JSON.stringify(u));
+      else localStorage.removeItem("av_user");
     } catch {}
   };
 
@@ -91,14 +94,15 @@ export default function AppShell() {
   };
 
   // Las pantallas se conectan en los pasos 5-10; los handlers se usarán entonces.
-  void onLogin;
   void onSaveScore;
 
-  // Pasos 8-10 sustituyen el placeholder por las demás pantallas.
+  // Pasos 9-10 sustituyen el placeholder por las demás pantallas.
   let screen: React.ReactNode = route.name;
   if (route.name === "biblioteca") screen = <Library navigate={navigate} />;
   else if (route.name === "detalle")
     screen = <GameDetail id={route.id} navigate={navigate} />;
+  else if (route.name === "auth")
+    screen = <Auth navigate={navigate} onLogin={onLogin} />;
 
   return (
     <>
