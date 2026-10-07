@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import type { Route, SavedScore, User } from "@/lib/types";
 import Nav from "@/components/nav";
 import Library from "@/components/library";
+import GameDetail from "@/components/game-detail";
 
 const BIBLIOTECA: Route = { name: "biblioteca" };
 
@@ -93,9 +94,11 @@ export default function AppShell() {
   void onLogin;
   void onSaveScore;
 
-  // Pasos 7-10 sustituyen el placeholder por las demás pantallas.
+  // Pasos 8-10 sustituyen el placeholder por las demás pantallas.
   let screen: React.ReactNode = route.name;
   if (route.name === "biblioteca") screen = <Library navigate={navigate} />;
+  else if (route.name === "detalle")
+    screen = <GameDetail id={route.id} navigate={navigate} />;
 
   return (
     <>
