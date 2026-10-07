@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import type { Route, SavedScore, User } from "@/lib/types";
 import Nav from "@/components/nav";
+import Library from "@/components/library";
 
 const BIBLIOTECA: Route = { name: "biblioteca" };
 
@@ -92,8 +93,9 @@ export default function AppShell() {
   void onLogin;
   void onSaveScore;
 
-  // Pasos 6-10 sustituyen este placeholder por las 5 pantallas.
-  const screen: React.ReactNode = route.name;
+  // Pasos 7-10 sustituyen el placeholder por las demás pantallas.
+  let screen: React.ReactNode = route.name;
+  if (route.name === "biblioteca") screen = <Library navigate={navigate} />;
 
   return (
     <>
