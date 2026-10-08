@@ -1,6 +1,6 @@
 # SPEC 02 — Home page de Arcade Vault
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** SPEC 01
 > **Date:** 2026-10-08
 > **Objective:** Portar a Next.js la landing `Home` de `references/templates/home-about/` como nueva pantalla inicial de la app, con datos mock y sin tocar About/Contacto.
@@ -103,25 +103,25 @@ Cada paso deja la app ejecutable y es commiteable por separado.
 
 ## Criterios de aceptación
 
-- [ ] `npm run lint` y `npm run build` terminan sin errores.
-- [ ] Abrir `/` sin hash muestra Home y deja el hash en `#/`.
-- [ ] Home muestra, en orden: hero "EL ARCADE CLÁSICO ESTÁ DE VUELTA", secciones `// 01`, `// 02`, franja de estadísticas, `// 03`, `// 04` y el CTA "¿LISTO PARA JUGAR?".
-- [ ] El hero muestra 8 siluetas decorativas con `aria-hidden="true"`.
-- [ ] La sección `// 01` muestra 4 tarjetas con los títulos JUEGOS CLÁSICOS, 100% GRATIS, LADDER BOARDS y SIEMPRE CRECIENDO.
-- [ ] La sección `// 02` muestra exactamente 6 mini-tarjetas; clic en una abre el detalle de ese juego (`#/juego/<id>`).
-- [ ] "EXPLORAR JUEGOS", "VER TODOS LOS JUEGOS →" e "INSERTAR MONEDA →" abren la biblioteca (`#/biblioteca`).
-- [ ] "CREAR CUENTA" y "EMPEZAR GRATIS →" abren la pantalla de acceso (`#/acceso`).
-- [ ] "VER SALÓN →" abre el salón (`#/salon`).
-- [ ] El ticker muestra 7 filas y el top del día 5 filas; las 3 primeras del top llevan las clases `top1`, `top2` y `top3`.
-- [ ] Los puntajes se muestran con separador de miles `es-ES` (por ejemplo `312.840`).
-- [ ] Las secciones `.reveal` reciben la clase `in` al entrar en el viewport; con `prefers-reduced-motion: reduce` son visibles de inmediato.
-- [ ] El `Nav` muestra Inicio, Biblioteca y Salón de la Fama (sin "Acerca de"); "Inicio" aparece activo en Home y "Biblioteca" en biblioteca, detalle y reproductor.
-- [ ] Clic en el logo del `Nav` abre Home.
-- [ ] Un hash inválido (`#/xyz`) o sin `id` (`#/juego/`) abre Home; `#/juego/no-existe` abre la biblioteca (regla de la spec 01).
-- [ ] Un hash JSON antiguo (`#%7B%22name%22%3A%22salon%22%7D`) abre el salón.
-- [ ] En el ancho móvil de `globals.css` el panel lateral incluye "Inicio" y navega a Home.
-- [ ] Las pantallas de la spec 01 (biblioteca, detalle, reproductor, acceso, salón) se ven igual que antes de esta spec.
-- [ ] La consola del navegador no muestra errores de hydration ni warnings de React al cargar `/`.
+- [x] `npm run lint` y `npm run build` terminan sin errores.
+- [x] Abrir `/` sin hash muestra Home y deja el hash en `#/`.
+- [x] Home muestra, en orden: hero "EL ARCADE CLÁSICO ESTÁ DE VUELTA", secciones `// 01`, `// 02`, franja de estadísticas, `// 03`, `// 04` y el CTA "¿LISTO PARA JUGAR?".
+- [x] El hero muestra 8 siluetas decorativas con `aria-hidden="true"`.
+- [x] La sección `// 01` muestra 4 tarjetas con los títulos JUEGOS CLÁSICOS, 100% GRATIS, LADDER BOARDS y SIEMPRE CRECIENDO.
+- [x] La sección `// 02` muestra exactamente 6 mini-tarjetas; clic en una abre el detalle de ese juego (`#/juego/<id>`).
+- [x] "EXPLORAR JUEGOS", "VER TODOS LOS JUEGOS →" e "INSERTAR MONEDA →" abren la biblioteca (`#/biblioteca`).
+- [x] "CREAR CUENTA" y "EMPEZAR GRATIS →" abren la pantalla de acceso (`#/acceso`).
+- [x] "VER SALÓN →" abre el salón (`#/salon`).
+- [x] El ticker muestra 7 filas y el top del día 5 filas; las 3 primeras del top llevan las clases `top1`, `top2` y `top3`.
+- [x] Los puntajes se muestran con separador de miles `es-ES` (por ejemplo `312.840`).
+- [x] Las secciones `.reveal` reciben la clase `in` al entrar en el viewport; con `prefers-reduced-motion: reduce` son visibles de inmediato.
+- [x] El `Nav` muestra Inicio, Biblioteca y Salón de la Fama (sin "Acerca de"); "Inicio" aparece activo en Home y "Biblioteca" en biblioteca, detalle y reproductor.
+- [x] Clic en el logo del `Nav` abre Home.
+- [x] Un hash inválido (`#/xyz`) o sin `id` (`#/juego/`) abre Home; `#/juego/no-existe` abre la biblioteca (regla de la spec 01).
+- [x] Un hash JSON antiguo (`#%7B%22name%22%3A%22salon%22%7D`) abre el salón.
+- [x] En el ancho móvil de `globals.css` el panel lateral incluye "Inicio" y navega a Home.
+- [x] Las pantallas de la spec 01 (biblioteca, detalle, reproductor, acceso, salón) se ven igual que antes de esta spec.
+- [x] La consola del navegador no muestra errores de hydration ni warnings de React al cargar `/`.
 
 ## Decisiones
 
