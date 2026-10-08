@@ -9,26 +9,30 @@ import Auth from "@/components/auth";
 import GamePlayer from "@/components/game-player";
 import HallOfFame from "@/components/hall-of-fame";
 
-const BIBLIOTECA: Route = { name: "biblioteca" };
+const HOME: Route = { name: "home" };
 
 function parseRoute(value: unknown): Route {
-  if (typeof value !== "object" || value === null) return BIBLIOTECA;
+  if (typeof value !== "object" || value === null) return HOME;
   const r = value as { name?: unknown; id?: unknown };
   switch (r.name) {
+    case "home":
+    case "biblioteca":
     case "auth":
     case "salon":
       return { name: r.name };
     case "detalle":
     case "player":
-      return typeof r.id === "string" ? { name: r.name, id: r.id } : BIBLIOTECA;
+      return typeof r.id === "string" ? { name: r.name, id: r.id } : HOME;
     default:
-      return BIBLIOTECA;
+      return HOME;
   }
 }
 
-// Hash legible: #/ · #/juego/<id> · #/jugar/<id> · #/acceso · #/salon
+// Hash legible: #/ · #/biblioteca · #/juego/<id> · #/jugar/<id> · #/acceso · #/salon
 function routeToHash(r: Route): string {
   switch (r.name) {
+    case "biblioteca":
+      return "#/biblioteca";
     case "detalle":
       return `#/juego/${encodeURIComponent(r.id)}`;
     case "player":
@@ -46,29 +50,31 @@ function hashToRoute(hash: string): Route {
   const [seg, id] = hash.replace(/^#\/?/, "").split("/");
   const gameId = id ? decodeURIComponent(id) : "";
   switch (seg) {
+    case "biblioteca":
+      return { name: "biblioteca" };
     case "juego":
-      return gameId ? { name: "detalle", id: gameId } : BIBLIOTECA;
+      return gameId ? { name: "detalle", id: gameId } : HOME;
     case "jugar":
-      return gameId ? { name: "player", id: gameId } : BIBLIOTECA;
+      return gameId ? { name: "player", id: gameId } : HOME;
     case "acceso":
       return { name: "auth" };
     case "salon":
       return { name: "salon" };
     default:
-      return BIBLIOTECA;
+      return HOME;
   }
 }
 
 function readHashRoute(): Route {
   try {
     const h = location.hash;
-    if (!h) return BIBLIOTECA;
+    if (!h) return HOME;
     // Compatibilidad con enlaces viejos (JSON codificado).
     if (h.startsWith("#%7B") || h.startsWith("#{"))
       return parseRoute(JSON.parse(decodeURIComponent(h.slice(1))));
     return hashToRoute(h);
   } catch {}
-  return BIBLIOTECA;
+  return HOME;
 }
 
 function readStoredUser(): User | null {
@@ -82,7 +88,7 @@ function readStoredUser(): User | null {
 
 export default function AppShell() {
   // Primer render fijo (igual que el servidor); la lectura real ocurre tras el montaje.
-  const [route, setRoute] = useState<Route>(BIBLIOTECA);
+  const [route, setRoute] = useState<Route>(HOME);
   const [user, setUser] = useState<User | null>(null);
   const [ready, setReady] = useState(false);
 
@@ -133,7 +139,10 @@ export default function AppShell() {
   };
 
   let screen: React.ReactNode = null;
-  if (route.name === "biblioteca") screen = <Library navigate={navigate} />;
+  if (route.name === "home")
+    screen = <div className="pixel neon-cyan">HOME (placeholder)</div>;
+  else if (route.name === "biblioteca")
+    screen = <Library navigate={navigate} />;
   else if (route.name === "detalle")
     screen = <GameDetail id={route.id} navigate={navigate} />;
   else if (route.name === "player")
