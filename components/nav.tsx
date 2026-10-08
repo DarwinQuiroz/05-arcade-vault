@@ -24,13 +24,19 @@ export default function Nav({ route, navigate, user, onSignOut }: NavProps) {
   return (
     <>
       <nav className="av-nav">
-        <div className="logo" onClick={() => go({ name: "biblioteca" })}>
+        <div className="logo" onClick={() => go({ name: "home" })}>
           <div className="logo-mark"></div>
           <div className="logo-text neon-cyan">
             ARCADE <span className="neon-magenta">VAULT</span>
           </div>
         </div>
         <div className="links">
+          <a
+            className={isActive("home") ? "active" : ""}
+            onClick={() => go({ name: "home" })}
+          >
+            Inicio
+          </a>
           <a
             className={isActive("biblioteca") ? "active" : ""}
             onClick={() => go({ name: "biblioteca" })}
@@ -81,6 +87,12 @@ export default function Nav({ route, navigate, user, onSignOut }: NavProps) {
         >
           MENÚ
         </div>
+        <a
+          className={isActive("home") ? "active" : ""}
+          onClick={() => go({ name: "home" })}
+        >
+          Inicio
+        </a>
         <a
           className={isActive("biblioteca") ? "active" : ""}
           onClick={() => go({ name: "biblioteca" })}

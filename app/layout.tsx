@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Press_Start_2P, JetBrains_Mono, Courier_Prime } from "next/font/google";
 import "./globals.css";
+import "./home.css";
 
 const pixel = Press_Start_2P({
   variable: "--font-pixel",

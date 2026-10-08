@@ -32,8 +32,41 @@ export interface SavedScore {
 }
 
 export type Route =
+  | { name: "home" }
   | { name: "biblioteca" }
   | { name: "detalle"; id: string }
   | { name: "player"; id: string }
   | { name: "auth" }
   | { name: "salon" };
+
+export interface HomeFeature {
+  icon: "GAMEPAD" | "FREE" | "TROPHY" | "ROCKET";
+  title: string;
+  desc: string;
+  color: GameColor;
+}
+
+export interface HomeStat {
+  n: string; // "12+", "MILES", "GLOBAL"
+  unit: string;
+  sub: string;
+}
+
+export interface RecentScore {
+  player: string;
+  game: string;
+  score: number;
+  ago: string; // "hace 2 min"
+  color: GameColor;
+}
+
+export interface TopPlayer {
+  rank: number;
+  player: string;
+  score: number;
+}
+
+export interface FaqItem {
+  q: string;
+  a: string;
+}
