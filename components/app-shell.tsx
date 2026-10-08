@@ -8,6 +8,7 @@ import GameDetail from "@/components/game-detail";
 import Auth from "@/components/auth";
 import GamePlayer from "@/components/game-player";
 import HallOfFame from "@/components/hall-of-fame";
+import Home from "@/components/home";
 
 const HOME: Route = { name: "home" };
 
@@ -139,8 +140,7 @@ export default function AppShell() {
   };
 
   let screen: React.ReactNode = null;
-  if (route.name === "home")
-    screen = <div className="pixel neon-cyan">HOME (placeholder)</div>;
+  if (route.name === "home") screen = <Home navigate={navigate} />;
   else if (route.name === "biblioteca")
     screen = <Library navigate={navigate} />;
   else if (route.name === "detalle")
