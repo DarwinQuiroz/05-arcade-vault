@@ -3,8 +3,10 @@
 import { useEffect, useRef } from "react";
 import {
   GAMES,
+  HOME_FAQ,
   HOME_FEATURES,
   HOME_STATS,
+  PRICE_PERKS,
   RECENT_SCORES,
   TOP_TODAY,
 } from "@/lib/data";
@@ -417,6 +419,67 @@ export default function Home({
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* PRICING */}
+      <section className="home-section reveal">
+        <div className="section-head">
+          <div className="kicker pixel neon-green">{"// 04"}</div>
+          <h2 className="section-title">PRECIOS</h2>
+          <div className="section-rule"></div>
+        </div>
+        <div className="pricing-grid">
+          <div className="price-card">
+            <div className="pc-label pixel">PLAN ÚNICO</div>
+            <div className="pc-name pixel">JUGADOR VAULT</div>
+            <div className="pc-amount">
+              <span className="pc-amount-n">$0</span>
+              <span className="pc-amount-u">/ SIEMPRE</span>
+            </div>
+            <div className="pc-tag">SIN TRUCOS · SIN LETRA PEQUEÑA</div>
+            <ul className="pc-list">
+              {PRICE_PERKS.map((perk) => (
+                <li key={perk}>✔ {perk}</li>
+              ))}
+            </ul>
+            <button
+              className="btn xl pulse"
+              style={{ width: "100%" }}
+              onClick={() => navigate({ name: "auth" })}
+            >
+              EMPEZAR GRATIS →
+            </button>
+            <div className="pc-foot">No pedimos tarjeta. Nunca lo haremos.</div>
+            <div className="pc-stamp pixel">
+              FREE
+              <br />
+              PLAY
+            </div>
+          </div>
+
+          <div className="pricing-faq">
+            {HOME_FAQ.map((f) => (
+              <div key={f.q} className="faq-item">
+                <div className="faq-q pixel">{f.q}</div>
+                <div className="faq-a">{f.a}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="home-final reveal">
+        <h2 className="final-title pixel">¿LISTO PARA JUGAR?</h2>
+        <button
+          className="btn xl pulse final-cta"
+          onClick={() => navigate({ name: "biblioteca" })}
+        >
+          INSERTAR MONEDA →
+        </button>
+        <div className="final-tag">
+          Gratis. Sin registro obligatorio. Empieza en segundos.
         </div>
       </section>
     </div>
