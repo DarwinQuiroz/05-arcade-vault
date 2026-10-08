@@ -26,10 +26,47 @@ function parseRoute(value: unknown): Route {
   }
 }
 
+// Hash legible: #/ · #/juego/<id> · #/jugar/<id> · #/acceso · #/salon
+function routeToHash(r: Route): string {
+  switch (r.name) {
+    case "detalle":
+      return `#/juego/${encodeURIComponent(r.id)}`;
+    case "player":
+      return `#/jugar/${encodeURIComponent(r.id)}`;
+    case "auth":
+      return "#/acceso";
+    case "salon":
+      return "#/salon";
+    default:
+      return "#/";
+  }
+}
+
+function hashToRoute(hash: string): Route {
+  const [seg, id] = hash.replace(/^#\/?/, "").split("/");
+  const gameId = id ? decodeURIComponent(id) : "";
+  switch (seg) {
+    case "juego":
+      return gameId ? { name: "detalle", id: gameId } : BIBLIOTECA;
+    case "jugar":
+      return gameId ? { name: "player", id: gameId } : BIBLIOTECA;
+    case "acceso":
+      return { name: "auth" };
+    case "salon":
+      return { name: "salon" };
+    default:
+      return BIBLIOTECA;
+  }
+}
+
 function readHashRoute(): Route {
   try {
-    const h = location.hash.replace(/^#/, "");
-    if (h) return parseRoute(JSON.parse(decodeURIComponent(h)));
+    const h = location.hash;
+    if (!h) return BIBLIOTECA;
+    // Compatibilidad con enlaces viejos (JSON codificado).
+    if (h.startsWith("#%7B") || h.startsWith("#{"))
+      return parseRoute(JSON.parse(decodeURIComponent(h.slice(1))));
+    return hashToRoute(h);
   } catch {}
   return BIBLIOTECA;
 }
@@ -62,7 +99,7 @@ export default function AppShell() {
   useEffect(() => {
     if (!ready) return;
     try {
-      location.hash = encodeURIComponent(JSON.stringify(route));
+      location.hash = routeToHash(route);
     } catch {}
     window.scrollTo({ top: 0, behavior: "instant" });
   }, [route, ready]);
